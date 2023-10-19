@@ -12,7 +12,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/relation')
 
  const Books = mongoose.model('Books',new mongoose.Schema({
   title: {type: String},
-  pages: {type: String},
+  pages: {type: Number},
   }));
 
   const Users = mongoose.model('Users',new mongoose.Schema({
@@ -24,6 +24,24 @@ mongoose.connect('mongodb://127.0.0.1:27017/relation')
     },
   }));
 
+
+
+//create book function
+async function createBook(title, pages) {
+  try {
+    const user = new Books({
+      title,
+      pages,
+    });
+
+    const result = await user.save();
+    console.log(result);
+
+  } catch (error) {
+    console.error("error" + error);
+  }
+}
+// createBook('NodeJs',200 )
 
 
 app.listen(port,()=>{
