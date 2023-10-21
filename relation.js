@@ -41,7 +41,28 @@ async function createBook(title, pages) {
     console.error("error" + error);
   }
 }
+//  affter run createBook('NodeJs',200 ) ==> book_id ==> '65319cb405bf5f99ac82c8d0'
+
 // createBook('NodeJs',200 )
+
+//create user function 
+async function createUser(first_name, last_name, book_id) {
+  try {
+    const user = new Users({
+      first_name,
+      last_name,
+      book: book_id,
+    });
+    const result = user.save();
+    console.log(result);
+  } catch (error) {
+    console.error("error" + error);
+  }
+}
+//call createUser() function 
+//createUser('mohammad', 'hadi', '')
+// createUser('mina', 'karimi', '65319cb405bf5f99ac82c8d0')
+
 
 
 app.listen(port,()=>{
