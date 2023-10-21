@@ -63,7 +63,31 @@ async function createUser(first_name, last_name, book_id) {
 //createUser('mohammad', 'hadi', '')
 // createUser('mina', 'karimi', '65319cb405bf5f99ac82c8d0')
 
+//create all user getuser() function
+async function getUsers() {
+  try {
+    const user = await Users.find().populate("book", "title pages -_id"); // show title and pages without id
+    if (!user) return console.log("not fond users");
+    console.log(user);
+  } catch (error) {
+    console.error(`error ${error}`);
+  }
+}
+// getUsers()
 
+//create all user getuser() function
+async function getUserById(id){
+  try {
+    const user = await Users.findById(id).populate("book", "title pages -_id"); // show title and pages without id
+    if (!user) {
+      return console.error("can not fond user ID");
+    }
+    console.log(user);
+  } catch (error) {
+    console.error(`error user id: ${error}`);
+  }
+}
+getUserById('6533c7242f95916637a2008a')
 
 app.listen(port,()=>{
   console.log(`server run on port: ${port}`);
